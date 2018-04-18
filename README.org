@@ -73,6 +73,9 @@ initialization file too:
       (exwm-input--fake-key ?\C-v)))
 #+END_SRC
 
+This will let you access the ~kill-ring~ and paste any element to any
+application.
+
 ** Usage
 
 There is nothing more to do than copying text the normal way. All
