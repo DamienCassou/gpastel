@@ -35,7 +35,7 @@ GPaste clipboard manager.  This means that the ~kill-ring~ will
 always contain everything the user copies in external applications,
 not just the last piece of text.
 
-Additionally, when using EXWM (the Emacs X Window Manager), gpastel
+Additionally, when using [[https://github.com/ch11ng/exwm][EXWM]] (the Emacs X Window Manager), gpastel
 makes it possible for the user to use the ~kill-ring~ from external
 applications.
 
