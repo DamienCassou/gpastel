@@ -125,7 +125,7 @@ all text in the GPaste clipboard."
   (when (gpastel--start-gpaste-daemon)
     ;; No need for `interprogram-paste-function' because GPaste will
     ;; tell us as soon as text is added to clipboard:
-    (setq interprogram-paste-function nil)
+    (setq interprogram-paste-function (lambda ()))
     ;; No need to save the system clipboard before killing in
     ;; Emacs because Emacs already knows about its content:
     (setq save-interprogram-paste-before-kill nil)
