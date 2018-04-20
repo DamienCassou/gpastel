@@ -55,31 +55,51 @@ you are using EXWM, add ~gpastel-start-listening~ to
   (gpastel-start-listening)
 #+END_SRC
 
-If you are using EXWM and [[http://oremacs.com/swiper/][Counsel]], you can add this to your
-initialization file too:
-
-#+BEGIN_SRC emacs-lisp
-  (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
-
-  (defun my/exwm-counsel-yank-pop ()
-    "Same as `counsel-yank-pop' and paste into exwm buffer."
-    (interactive)
-    (let ((inhibit-read-only t)
-          ;; Make sure we send selected yank-pop candidate to
-          ;; clipboard:
-          (yank-pop-change-selection t))
-      (call-interactively #'counsel-yank-pop))
-    (when (derived-mode-p 'exwm-mode)
-      (exwm-input--fake-key ?\C-v)))
-#+END_SRC
-
-This will let you access the ~kill-ring~ and paste any element to any
-application.
-
 ** Usage
 
 There is nothing more to do than copying text the normal way. All
 copied texts should appear in the Emacs ~kill-ring~ now.
+
+*** For EXWM users
+
+If you use EXWM and you want to access the ~kill-ring~ from any
+application (instead of the less powerful system clipboard), I
+recommend you either install and configure [[http://oremacs.com/swiper/][counsel]] or
+[[https://github.com/browse-kill-ring/browse-kill-ring][browse-kill-ring]]. Then, you can add one of the following two
+configuration snippets to your initialization file.
+
+**** For EXWM+counsel users
+
+Add the following to your initialization file:
+
+ #+BEGIN_SRC emacs-lisp
+   (exwm-input-set-key (kbd "M-y") #'my/exwm-counsel-yank-pop)
+
+   (defun my/exwm-counsel-yank-pop ()
+     "Same as `counsel-yank-pop' and paste into exwm buffer."
+     (interactive)
+     (let ((inhibit-read-only t)
+           ;; Make sure we send selected yank-pop candidate to
+           ;; clipboard:
+           (yank-pop-change-selection t))
+       (call-interactively #'counsel-yank-pop))
+     (when (derived-mode-p 'exwm-mode)
+       (exwm-input--fake-key ?\C-v)))
+ #+END_SRC
+
+**** For EXWM+browse-kill-ring users
+
+[[https://github.com/kriyative][Ram Krishnan]] gives us the following piece of code for browse-kill-ring users:
+
+#+BEGIN_SRC emacs-lisp
+  (define-advice browse-kill-ring-insert-and-highlight
+      (:around (old-function str) exwm-paste)
+    "Paste the selection appropriately in exwm mode buffers."
+    (if (not (derived-mode-p 'exwm-mode))
+        (funcall old-function str)
+      (kill-new str)
+      (exwm-input--fake-key ?\C-v)))
+#+END_SRC
 
 ** License
 
