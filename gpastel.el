@@ -129,7 +129,7 @@ all text in the GPaste clipboard."
     ;; No need to save the system clipboard before killing in
     ;; Emacs because Emacs already knows about its content:
     (setq save-interprogram-paste-before-kill nil)
-    ;; Register an handler for GPaste Update signals so we can
+    ;; Register a handler for GPaste Update signals so we can
     ;; immediately update the `kill-ring':
     (setq gpastel--dbus-object
           (gpastel-dbus-call #'dbus-register-signal "Update" #'gpastel--update-handler))))
