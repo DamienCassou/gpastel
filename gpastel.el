@@ -4,7 +4,7 @@
 
 ;; Author: Damien Cassou <damien@cassou.me>
 ;; Url: https://gitlab.petton.fr/DamienCassou/desktop-environment
-;; Package-requires: ((emacs "24.3"))
+;; Package-requires: ((emacs "24.4"))
 ;; Version: 0.3.0
 ;; Keywords: tools
 
