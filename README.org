@@ -48,11 +48,11 @@ Add the following to your initialization file:
 #+END_SRC
 
 You also have to tell gpastel to start listening for GPaste events. If
-you are using EXWM, add ~gpastel-start-listening~ to
+you are using EXWM, add ~gpastel-mode~ to
 ~exwm-init-hook~. Otherwise, just add this line to your initialization file:
 
 #+BEGIN_SRC emacs-lisp
-  (gpastel-start-listening)
+  (gpastel-mode)
 #+END_SRC
 
 ** Usage

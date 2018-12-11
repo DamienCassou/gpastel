@@ -138,5 +138,24 @@ all text in the GPaste clipboard."
     (setq gpastel--dbus-object
           (gpastel-dbus-call #'dbus-register-signal "Update" #'gpastel--update-handler))))
 
+(defun gpastel-stop-listening ()
+  "Stop listening for GPaste events."
+  (interactive)
+  (when (dbus-unregister-object gpastel--dbus-object)
+    (setq gpastel--dbus-object nil)
+    (setq save-interprogram-paste-before-kill gpastel--save-interprogram-paste-before-kill-orig)
+    (advice-remove interprogram-paste-function #'ignore)))
+
+;;;###autoload
+(define-minor-mode gpastel-mode
+  "Listen to GPaste events."
+  :group 'gpastel
+  :global t
+  :init-value nil
+  :require 'gpastel
+  (if gpastel-mode
+      (gpastel-start-listening)
+    (gpastel-stop-listening)))
+
 (provide 'gpastel)
 ;;; gpastel.el ends here
