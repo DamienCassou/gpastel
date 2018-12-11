@@ -61,6 +61,9 @@
   "D-Bus object remembering the return value of `dbus-register-signal'.
 This can be used to unregister from the signal.")
 
+(defvar gpastel--save-interprogram-paste-before-kill-orig nil
+  "Value of `save-interprogram-paste-before-kill' before starting gpastel.")
+
 (defconst gpastel--dbus-arguments
   '(:session
     "org.gnome.GPaste"
@@ -128,6 +131,7 @@ all text in the GPaste clipboard."
     (advice-add interprogram-paste-function :override #'ignore)
     ;; No need to save the system clipboard before killing in
     ;; Emacs because Emacs already knows about its content:
+    (setq gpastel--save-interprogram-paste-before-kill-orig save-interprogram-paste-before-kill)
     (setq save-interprogram-paste-before-kill nil)
     ;; Register a handler for GPaste Update signals so we can
     ;; immediately update the `kill-ring':
