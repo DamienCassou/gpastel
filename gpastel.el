@@ -160,5 +160,26 @@ all text in the GPaste clipboard."
       (gpastel--start-listening)
     (gpastel--stop-listening)))
 
+(cl-defmethod gui-backend-set-selection (selection-symbol value
+                                                          &context (window-system nil))
+  (if (not (and gpastel-mode (eq selection-symbol 'CLIPBOARD)))
+      (cl-call-next-method)
+    (gpastel-dbus-call #'dbus-call-method "Add" value)))
+
+;; BIG UGLY HACK!
+;; xterm.el has a defmethod to use some (poorly supported) escape
+;; sequences (code named OSC 52) for clipboard interaction, and enables
+;; it by default.
+;; Problem is, that its defmethod takes precedence over our defmethod,
+;; so we need to disable it in order to be called.
+(cl-defmethod gui-backend-set-selection :extra "gpastel-override"
+  (selection-symbol value
+                    &context (window-system nil)
+                    ((terminal-parameter nil 'xterm--set-selection) (eql t)))
+  ;; Disable this method which doesn't work anyway in 99% of the cases!
+  (setf (terminal-parameter nil 'xterm--set-selection) nil)
+  ;; Try again!
+  (gui-backend-set-selection selection-symbol value))
+
 (provide 'gpastel)
 ;;; gpastel.el ends here
