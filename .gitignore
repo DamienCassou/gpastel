@@ -1,3 +1,4 @@
 *.elc
 *~
 gpastel-autoloads.el
+gpastel-pkg.el
