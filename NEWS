@@ -1,0 +1,21 @@
+* 0.4.0
+
+- Add the global minor mode ~gpastel-mode~ (idea from Stefan
+  Monnier). Use that instead of ~gpastel-start-listening~ which may
+  soon be deprecated.
+- Upgrade Emacs requirement to at least 24.4
+
+* 0.3.0
+
+- Make ~interprogram-paste-function~ an empty lambda instead of nil:
+  It seems that some packages require this variable to reference a
+  function.
+
+* 0.2.0
+
+Initial release
+
+* COMMENT Emacs
+;; Local Variables:
+;; mode: org
+;; End:
