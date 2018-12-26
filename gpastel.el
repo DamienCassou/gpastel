@@ -57,6 +57,14 @@
   :type 'string
   :group 'gpastel)
 
+(defcustom gpastel-update-hook nil
+  "Hook which runs after gpastel added an element to `kill-ring'.
+
+Hook functions can retrieve the latest entry by accessing the
+`car' of `kill-ring'."
+  :type 'hook
+  :group 'gpastel)
+
 (defvar gpastel--dbus-object nil
   "D-Bus object remembering the return value of `dbus-register-signal'.
 This can be used to unregister from the signal.")
@@ -105,7 +113,8 @@ all text in the GPaste clipboard."
       ;; system clipboard with `interprogram-cut-function' to be
       ;; saved again to the `kill-ring':
       (unless (string= copied-text (car kill-ring))
-        (kill-new copied-text)))))
+        (kill-new copied-text)
+        (run-hooks 'gpastel-update-hook)))))
 
 (defun gpastel--start-gpaste-daemon ()
   "(Re)Start GPaste daemon and return non-nil upon success."
