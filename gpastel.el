@@ -130,10 +130,8 @@ all text in the GPaste clipboard."
   "Return GPaste clipboard content at INDEX, or 0."
   (gpastel-dbus-call #'dbus-call-method "GetElement" :uint64 (or index 0)))
 
-;;;###autoload
-(defun gpastel-start-listening ()
+(defun gpastel--start-listening ()
   "Start listening for GPaste events."
-  (interactive)
   (when (gpastel--start-gpaste-daemon)
     ;; No need for `interprogram-paste-function' because GPaste will
     ;; tell us as soon as text is added to clipboard:
@@ -147,9 +145,8 @@ all text in the GPaste clipboard."
     (setq gpastel--dbus-object
           (gpastel-dbus-call #'dbus-register-signal "Update" #'gpastel--update-handler))))
 
-(defun gpastel-stop-listening ()
+(defun gpastel--stop-listening ()
   "Stop listening for GPaste events."
-  (interactive)
   (when (dbus-unregister-object gpastel--dbus-object)
     (setq gpastel--dbus-object nil)
     (setq save-interprogram-paste-before-kill gpastel--save-interprogram-paste-before-kill-orig)
@@ -163,8 +160,8 @@ all text in the GPaste clipboard."
   :init-value nil
   :require 'gpastel
   (if gpastel-mode
-      (gpastel-start-listening)
-    (gpastel-stop-listening)))
+      (gpastel--start-listening)
+    (gpastel--stop-listening)))
 
 (provide 'gpastel)
 ;;; gpastel.el ends here
