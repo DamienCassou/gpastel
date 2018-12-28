@@ -54,16 +54,14 @@
 
 (defcustom gpastel-gpaste-client-command "gpaste-client"
   "GPaste client name or path."
-  :type 'string
-  :group 'gpastel)
+  :type 'string)
 
 (defcustom gpastel-update-hook nil
   "Hook which runs after gpastel added an element to `kill-ring'.
 
 Hook functions can retrieve the latest entry by accessing the
 `car' of `kill-ring'."
-  :type 'hook
-  :group 'gpastel)
+  :type 'hook)
 
 (defvar gpastel--dbus-object nil
   "D-Bus object remembering the return value of `dbus-register-signal'.
@@ -155,7 +153,6 @@ all text in the GPaste clipboard."
 ;;;###autoload
 (define-minor-mode gpastel-mode
   "Listen to GPaste events."
-  :group 'gpastel
   :global t
   :init-value nil
   :require 'gpastel
