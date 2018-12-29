@@ -155,7 +155,6 @@ all text in the GPaste clipboard."
   "Listen to GPaste events."
   :global t
   :init-value nil
-  :require 'gpastel
   (if gpastel-mode
       (gpastel--start-listening)
     (gpastel--stop-listening)))
