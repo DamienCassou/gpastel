@@ -1,10 +1,6 @@
-GITHUB_DOWNLOAD=https://raw.githubusercontent.com
+ELPA_DEPENDENCIES=package-lint
 
-# Install package-lint from github because I need:
-# - 4c90df4919f7b96921a939b3bd88bedfd08d041e
-# - c2bdb3668abf46d576f5728e66c551a919c0bc14
-# which are not yet released.
-DOWNLOAD_DEPENDENCIES=${GITHUB_DOWNLOAD}/purcell/package-lint/master/package-lint.el
+ELPA_ARCHIVES=melpa
 
 LINT_CHECKDOC_FILES=gpastel.el
 LINT_PACKAGE_LINT_FILES=gpastel.el
