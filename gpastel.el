@@ -161,6 +161,8 @@ all text in the GPaste clipboard."
 
 (cl-defmethod gui-backend-set-selection (selection-symbol value
                                                           &context (window-system nil))
+  "Don't know what this code is about anymore.
+SELECTION-SYMBOL VALUE WINDOW-SYSTEM."
   (if (not (and gpastel-mode (eq selection-symbol 'CLIPBOARD)))
       (cl-call-next-method)
     (gpastel-dbus-call #'dbus-call-method "Add" value)))
@@ -175,6 +177,7 @@ all text in the GPaste clipboard."
   (selection-symbol value
                     &context (window-system nil)
                     ((terminal-parameter nil 'xterm--set-selection) (eql t)))
+  "Don't know what this code is about anymore."
   ;; Disable this method which doesn't work anyway in 99% of the cases!
   (setf (terminal-parameter nil 'xterm--set-selection) nil)
   ;; Try again!
