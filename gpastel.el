@@ -3,7 +3,7 @@
 ;; Copyright (C) 2018-2023  Free Software Foundation, Inc.
 
 ;; Author: Damien Cassou <damien@cassou.me>
-;; Url: https://gitlab.petton.fr/DamienCassou/desktop-environment
+;; Url: https://github.com/DamienCassou/gpastel
 ;; Package-requires: ((emacs "25.1"))
 ;; Version: 0.5.0
 ;; Keywords: tools
