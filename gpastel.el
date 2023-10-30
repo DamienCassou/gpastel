@@ -1,6 +1,6 @@
 ;;; gpastel.el --- Integrates GPaste with the kill-ring  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2018  Free Software Foundation, Inc.
+;; Copyright (C) 2018-2023  Free Software Foundation, Inc.
 
 ;; Author: Damien Cassou <damien@cassou.me>
 ;; Url: https://gitlab.petton.fr/DamienCassou/desktop-environment

@@ -105,7 +105,7 @@ Add the following to your initialization file:
 
 ** License
 
-See [[file:COPYING][COPYING]]. Copyright (c) 2018 Damien Cassou.
+See [[file:COPYING][COPYING]]. Copyright (c) 2018-2023 Damien Cassou.
 
   #+BEGIN_HTML
   <a href="https://liberapay.com/DamienCassou/donate">
